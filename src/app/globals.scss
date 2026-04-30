@@ -1,0 +1,60 @@
+@use 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme{
+    --font-ubuntu: "Ubuntu", sans-serif;
+}
+
+.animate-orbit { 
+    animation: orbit 20s linear infinite; 
+}
+
+@keyframes orbit {
+      from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+.animate-float { 
+    animation: float 6s ease-in-out infinite;
+    transform: translateY(-19.9478px) rotate(1.99478deg); 
+}
+@keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+}
+.animate-pulse-glow { 
+    animation: pulse-glow 3s ease-in-out infinite; 
+}
+@keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+}
+.gradient-border {
+      position: relative;
+}
+.dark .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(135deg, #02ee29, #19aa0c, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    pointer-events: none;
+}
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(135deg, #fcba07, #9c8312, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    border-radius: inherit;
+    pointer-events: none;
+}
