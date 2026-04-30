@@ -1,13 +1,13 @@
 "use client"
 
-import PreTestPopUp from "@/components/Test/PreTestPopUp";
+import PreTestPopUp, { JobStatusLoader } from "@/components/Test/PreTestPopUp";
 import TestBody from "@/components/Test/TestBody";
 import TestHeader from "@/components/Test/TestHeader";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react"
+import {  Suspense, useEffect, useState } from "react"
 
-export default function TestPage(){
+ function TestComponent(){
   const testId  = useSearchParams().get("testId") || null;
   const [testDetails,setTestDetails] = useState(null);
   const[preTest, setPreTest] = useState(true);
@@ -82,4 +82,11 @@ export default function TestPage(){
     {preTest && <PreTestPopUp status={status} testDetails={testDetails} setPreTest={setPreTest}/>}
     <TestBody setStatus={setStatus} testDetails={testDetails} testId={testId} answers={answers} setAnswers={setAnswers} handleSubmit={handleSubmit}/>
   </main>
+}
+
+export default function TestPage(){
+
+  return <Suspense fallback={JobStatusLoader({status:"loading"})}>
+    <TestComponent />
+  </Suspense>
 }

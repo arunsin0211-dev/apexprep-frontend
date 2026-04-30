@@ -4,8 +4,10 @@
 import ExamTest from "@/components/Subject/Exams";
 import { useSearchParams } from "next/navigation";
 import StartTest from "@/components/Subject/StartTest";
+import { Suspense } from "react";
+import { JobStatusLoader } from "@/components/Test/PreTestPopUp";
 
-export default function ExamPage(){
+ function ExamComponent(){
     const examPair = {
             upsc_cse: "1e403b3e-f718-4e3c-8fb2-e84a388ef8ad",
             ssc_cgl: "27e55657-efd9-4a30-9b9a-57540de4ccc9",
@@ -36,4 +38,10 @@ export default function ExamPage(){
 
         </div>
         </main>
+}
+
+export default function ExamPage(){
+    return <Suspense fallback={JobStatusLoader({status:"loading"})}>
+        <ExamComponent />
+    </Suspense>
 }

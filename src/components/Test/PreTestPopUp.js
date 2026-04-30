@@ -70,7 +70,7 @@ return <div className=" text-slate-900 dark:text-gray-300">
 
 }
 
-const JobStatusLoader =({status})=>{
+export const JobStatusLoader =({status})=>{
 
   return <div className="w-full py-30 text-center space-y-5">
           {/* Spinner */}
