@@ -4,12 +4,13 @@ import ResultBody from "@/components/score/ResultBody";
 import ResultHeader from "@/components/score/ResultHeader";
 import ResultPopUp from "@/components/score/ResultPopUp";
 import ReviewBody from "@/components/score/ReviewBody";
+import { JobStatusLoader } from "@/components/Test/PreTestPopUp";
 import { addReviewedQue } from "@/util/clientDataUtil/ResultData";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 
-export default function ScorePage(){
+ function ScoreComponent(){
 
     const [testId,setTestId] = useState(useSearchParams().get("testId"));
     const [loading,setLoading] = useState(true);
@@ -95,4 +96,10 @@ export default function ScorePage(){
         <ResultHeader testDetails={testDetails}/>
         {review ? <ReviewBody total={testDetails?.totalQuestions} setReview={setReview} /> :<ResultBody testDetails={testDetails} result={result} getReview={fetchReview}/>}
     </main>
+}
+
+export default function ResultPage(){
+    return <Suspense fallback={JobStatusLoader({status:"Loading Result..."})}>
+        <ScoreComponent/>
+    </Suspense>
 }
