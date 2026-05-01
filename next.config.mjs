@@ -7,7 +7,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',       // any request starting with /api
-        destination: 'https://apexprep-backend-production.up.railway.app/:path*', // forward to backend
+        destination: `${BACKEND_URL}/:path*`, // forward to backend
       },
     ];
   },
