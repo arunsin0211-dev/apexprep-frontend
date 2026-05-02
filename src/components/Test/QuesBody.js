@@ -13,6 +13,7 @@ export default function QuestionBody({currQue, total,setCurrQue,answers,setAnswe
     }
     useEffect(()=>{
         setQuestion(fetchQuestion(currQue));
+        console.log(total);
     },[currQue])
 
     useEffect(()=>{
@@ -34,7 +35,6 @@ export default function QuestionBody({currQue, total,setCurrQue,answers,setAnswe
         })
     }
     const nextQue =()=>{
-        
         setCurrQue(prev => Math.min(prev+1,total));
     }
 
@@ -58,11 +58,11 @@ export default function QuestionBody({currQue, total,setCurrQue,answers,setAnswe
         {/* ACTION BUTTONS */}
 
         <div className="flex justify-between mt-6 w-full ">
-            <button onClick={prevQue} disabled={currQue === 1} className="px-4 py-2 bg-gray-300 rounded" >Previous</button>
+            <button onClick={prevQue} disabled={currQue <= 1} className="px-4 py-2 bg-gray-300 rounded" >Previous</button>
             <button onClick={toggleReview} className="px-4 py-2 bg-blue-500 text-white rounded"> 
                 Mark for Review
             </button>
-            <button onClick={nextQue} disabled={currQue === total} className="px-4 py-2 font-semibold bg-orange-500 dark:bg-lime-400 dark:text-gray-900 text-white rounded" >Next</button>
+            <button onClick={nextQue} disabled={currQue >= total} className="px-4 py-2 font-semibold bg-orange-500 dark:bg-lime-400 dark:text-gray-900 text-white rounded" >Next</button>
         </div>
 
         <div className="w-full mt-5 items-center flex justify-center item">

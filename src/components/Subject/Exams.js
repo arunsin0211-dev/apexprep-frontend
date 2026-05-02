@@ -9,7 +9,7 @@ export default function ExamTest(){
         if(exams.length == 0){
             fetch('/api/exam')
                 .then((res)=>(res.json()))
-                .then((data)=>{console.log(data);setExam(data)})
+                .then((data)=>{setExam(data)})
                 .catch((ex)=>console.log(ex));
         }
     },[])
